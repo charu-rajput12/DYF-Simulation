@@ -56,4 +56,5 @@ namespace Cainos.PixelArtTopDown_Basic
             GetComponent<Rigidbody2D>().velocity = speed * dir;
         }
     }
+
 }

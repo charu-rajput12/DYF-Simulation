@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
 			case EScene.MiniGames_MathBall:
 				SceneManager.LoadScene("game_1");
 				break;
+			case EScene.Library_Maze:
+				SceneManager.LoadScene("Library_Maze");
+				break;
 			default:
 				break;
 		}

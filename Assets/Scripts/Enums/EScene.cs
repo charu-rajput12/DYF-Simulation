@@ -5,5 +5,6 @@
 	MainMenu,
 	Gameplay,
 	MiniGames_Wordle,
-	MiniGames_MathBall
+	MiniGames_MathBall,
+	Library_Maze
 }
