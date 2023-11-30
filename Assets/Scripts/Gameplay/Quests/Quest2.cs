@@ -22,7 +22,7 @@ public class Quest2 : QuestBase, IQuest
 
 	void OnStartQuest()
 	{
-		Gameplay.CanPlayerMove = false;
+		PlayerManager.CanPlayerMove = false;
 		UIChoosePath.ShowUI();
 		QuestLogManager.instance.SetStatus(0, 1);
 

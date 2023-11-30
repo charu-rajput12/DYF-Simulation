@@ -11,10 +11,15 @@ public class RandomWords : MonoBehaviour
     {
         int index = Random.Range(0, words.Count);
         if (!prevIndex.Contains(index))
+        {
             prevIndex.Add(index);
+            return words[index];
+
+        }
         else
-            GenerateRandomWord();
-        return words[index];
+        {
+            return GenerateRandomWord();
+        }
     }
 
 }

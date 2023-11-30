@@ -12,11 +12,12 @@ public class DialogManager : MonoBehaviour
     public TMP_Text dialogText;
     public Image subjectPic;
     public int dialogueIndex;
-    private List<Dialogue> tempDialogueList = new List<Dialogue>();
-    public event Action<int> stopDialogues;
+    public List<Dialogue> tempDialogueList = new List<Dialogue>();
+    public event Action<int> pauseDialogues;
     public void StartDialogue(List<Dialogue> dialogues)
     {
-        Gameplay.CanPlayerMove = false;
+        Debug.Log("here 22");
+        PlayerManager.CanPlayerMove = false;
         dialogueIndex = 0;
         // start dialogue
         tempDialogueList.Clear();
@@ -26,24 +27,27 @@ public class DialogManager : MonoBehaviour
     }
     void PlayDialogue(Dialogue dialogue)
     {
+        Debug.Log("here 33");
+
         subjectName.text = dialogue.name;
         dialogText.text = dialogue.sentence;
         subjectPic.sprite = dialogue.sprite;
+        dialogueScreen.SetActive(true);
     }
     public void NextDialogue()
     {
-        if (Globals.currentQuest == 1 )
+        if (DataManager.GameData.PlayerData.currentQuest == 0)
         {
             if(dialogueIndex == 4)
             {
                 dialogueScreen.SetActive(false);
-                stopDialogues.Invoke(1);
+                pauseDialogues.Invoke(1);
                 return;
             }
-            else if(dialogueIndex == 7)
+            else if(dialogueIndex == tempDialogueList.Count-1)
             {
                 dialogueScreen.SetActive(false);
-                stopDialogues.Invoke(2);
+                pauseDialogues.Invoke(2);
                 return;
             }
         }

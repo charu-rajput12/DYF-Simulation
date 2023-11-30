@@ -22,17 +22,17 @@ public class Quest1 : QuestBase, IQuest
 	void OnStartQuest()
 	{
 		UIMindMapIntro.ShowUI();
-		QuestLogManager.instance.SetStatus(0, 0);
+	//	QuestLogManager.instance.SetStatus(0, 0);
 
 	}
 	void OnEndQuest()
 	{
 		//Gameplay.CanPlayerMove = true;
-		Debug.Log("quest 1 ");
-		Quest1Quiz.instance.StartQuiz();
-		QuestLogManager.instance.SetStatus(1, 0);
-		RewardsUI.instance.SaveAchivement(0); // achieved 0 index task in achievement
-		RewardsUI.instance.ShowAchievmentPopup("Completed any quest");
+		Debug.Log("quest 1 end");
+		//Quest1Quiz.instance.StartQuiz();
+		QuestLogManager.instance.SetStatus(3, 0);
+		//RewardsUI.instance.SaveAchivement(0); // achieved 0 index task in achievement
+		//RewardsUI.instance.ShowAchievmentPopup("Completed any quest");
 	}
 
 }

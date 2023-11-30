@@ -7,6 +7,7 @@ public class NpcAreaUIManager : MonoBehaviour
 	static NpcAreaUIManager s_instance;
 
 	[SerializeField] Canvas m_canvasNpcUI;
+	[SerializeField] UINpc uINpc;
 
 	#region Unity Methods
 	private void Awake()
@@ -32,8 +33,10 @@ public class NpcAreaUIManager : MonoBehaviour
 		m_canvasNpcUI.transform.parent = a_Npc.TransCanvasParent;
 		m_canvasNpcUI.GetComponent<RectTransform>().localPosition = Vector3.zero;
 
-		Debug.Log("trigger entered");
-		UINpc.ShowUI(a_Npc);
+		Debug.Log("trigger entered"+a_Npc.NpcId);
+		Debug.Log("trigger entered inside "+a_Npc.NpcId);
+		if(!a_Npc.npc_Interactable)
+			UINpc.ShowUI(a_Npc);
 
 	}
 	void Internal_OnTriggerExit2D(Npc a_Npc)

@@ -37,7 +37,7 @@ public class UIStartQuestDialogue : UIBase
 	void Internal_ShowUI(string a_heading, string a_desc, Sprite a_spriteNpc, Action a_onBtnClickedStart, Action a_onBtnClickedCancel)
 	{
 
-		Gameplay.CanPlayerMove = false;
+		PlayerManager.CanPlayerMove = false;
 
 		m_imgNpc.sprite = a_spriteNpc;
 		m_txtHeading.text = a_heading;

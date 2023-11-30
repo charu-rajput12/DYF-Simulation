@@ -10,6 +10,16 @@ public class Init : MonoBehaviour
 	void Awake()
 	{
 		s_instance = this;
+       int checker= PlayerPrefs.GetInt("firstTime");
+		Debug.Log("checker : " + checker);
+		if(checker == 0)
+        {
+
+			PlayerPrefs.DeleteAll();
+			PlayerPrefs.SetInt("firstTime", 1);
+			PlayerPrefs.Save();
+		}
+
 	}
 	void OnDestroy()
 	{

@@ -84,7 +84,7 @@ public class QuestManager : MonoBehaviour
 			() => StartQuest(a_currentQuest),
 			() => 
 			{
-				Gameplay.CanPlayerMove = true;
+				PlayerManager.CanPlayerMove = true;
 				a_OnCancel?.Invoke();
 			}
 			);
@@ -102,7 +102,7 @@ public class QuestManager : MonoBehaviour
 		int l_currentQuest = DataManager.GameData.PlayerData.currentQuest;
 		((IQuest)s_instance.m_lstQuests[index]).EndQuest();
 
-		if (a_currentRunningQuest == l_currentQuest) //if its newest quest that player have completed
+		if (index == l_currentQuest) //if its newest quest that player have completed
 		{
 			l_currentQuest++;
 			s_instance.SetCurrentQuest(l_currentQuest);

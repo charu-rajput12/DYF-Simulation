@@ -30,11 +30,18 @@ public class Codex_Gameplay : MonoBehaviour
         {
             item.color = deSelectColor;
         }
+
         codexButton[index].color = selectColor;
         foreach (var item in description)
         {
             item.gameObject.SetActive(false);
         }
         description[index].gameObject.SetActive(true);
+        if (index == 2)
+            codexButton[3].gameObject.SetActive(true);
+        else
+            codexButton[3].gameObject.SetActive(false);
+
+
     }
 }

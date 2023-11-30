@@ -55,7 +55,7 @@ public class Quest1Quiz : MonoBehaviour
 	public void EndQuiz()
     {
 		ShowUI(3);
-		Gameplay.CanPlayerMove = true;
+		PlayerManager.CanPlayerMove = true;
 		QuestLogManager.instance.SetStatus(3,0);
 		RewardsUI.instance.SaveAchivement(1); // achieved 1 index task in achievement
 		RewardsUI.instance.ShowAchievmentPopup("Complete any quiz");

@@ -9,5 +9,7 @@ public class Npc : MonoBehaviour
 	[SerializeField] Transform m_transCanvasParent;
 	public Transform TransCanvasParent => m_transCanvasParent;
 	public int NpcId => m_npcId; 
-	public Sprite Sprite => m_spriteNpc; 
+	public Sprite Sprite => m_spriteNpc;
+
+	public bool npc_Interactable = false;
 }

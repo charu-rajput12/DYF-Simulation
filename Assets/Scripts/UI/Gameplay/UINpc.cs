@@ -5,6 +5,8 @@ using UnityEngine;
 public class UINpc : UIBase
 {
 	static UINpc s_instance;
+	[SerializeField] DialogManager_Quest1 dialogManager_Quest1;
+	//public bool ifNpcInteracted;
 
 	bool m_canUpdate = false;
 	Npc m_npc;
@@ -53,7 +55,10 @@ public class UINpc : UIBase
 	}
 	public void OnBtnClicked_Interact()
 	{
-		OnInteract();
+			
+			OnInteract();
+
+			
 
 		//
 	}
@@ -67,10 +72,23 @@ public class UINpc : UIBase
 		}
 		else 
 		{
-			QuestManager.OnInteract(m_npc, () => m_canUpdate = true);
+            if (!m_npc.npc_Interactable)
+            {
+				if (m_npc.NpcId == 0 && currentqUEST == 0)
+					dialogManager_Quest1.StartQuest();
+				else if (currentqUEST == 1)
+				{
+					QuestManager.OnInteract(m_npc, () => m_canUpdate = true);
+				}
+				m_npc.npc_Interactable = true;
+			}
+
 
 			UIGameplay.HideUI();
 			m_canUpdate = false;
+			s_instance.Hide();
+
+
 		}
 	} 
 }

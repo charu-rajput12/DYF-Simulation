@@ -10,28 +10,54 @@ public class DialogManager_Quest1 : MonoBehaviour
     public TMP_Text word;
     public TMP_InputField inputField;
     public List<Dialogue> dialogue;
+    public List<Dialogue> dialogue_AfterLibrary;
+
     public DialogManager dialogManager;
     public RandomWords randomWords;
     public int wordCount = 0;
     // Start is called before the first frame update
     void Start()
     {
-        Globals.currentQuest = 1;
-        dialogManager.StartDialogue(dialogue);
-        dialogManager.stopDialogues += ShowWords;
+        //if (Globals.visitedQuest.Contains())
+        //{
+        //    Globals.currentQuest = 1;
+        //    // dialogManager.StartDialogue(dialogue);
+        //    dialogManager.pauseDialogues += ShowWords;
+        //}
+            dialogManager.pauseDialogues += ShowWords;
+
     }
+    public void StartQuest()
+    {
+        QuestLogManager.instance.SetStatus(0, 0);
+
+        Debug.Log("here...");
+        if(!Globals.afterLibrary)
+            dialogManager.StartDialogue(dialogue);
+        else
+            dialogManager.StartDialogue(dialogue_AfterLibrary);
+
+    }
+
 
     private void ShowWords(int obj)
     {   
         if(obj == 1)
         {
             wordScreen.SetActive(true);
+            inputField.text = "";
             word.text = randomWords.GenerateRandomWord();
             wordCount++;
         }
         else
         {
-            Gameplay.CanPlayerMove = true;
+            PlayerManager.CanPlayerMove = true;
+            UIGameplay.ShowUI();
+            if (Globals.afterLibrary)
+            {
+                QuestManager.EndQuest(0);
+
+            }
         }
 
     }
@@ -47,13 +73,5 @@ public class DialogManager_Quest1 : MonoBehaviour
         {
             ShowWords(1);
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("trigger enter : "+collision.name);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collision enter : " + collision.collider.name);
     }
 }

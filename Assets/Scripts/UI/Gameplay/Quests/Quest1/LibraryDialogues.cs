@@ -21,7 +21,6 @@ public class LibraryDialogues : MonoBehaviour
 
     void Start()
     {
-        Globals.currentQuest = 1;
         playerManager.invokeNextStep += ShowDialogue;
     }
 
@@ -42,11 +41,13 @@ public class LibraryDialogues : MonoBehaviour
             ShowHintPopUp();
         else if (obj == 3)
             ShowAncientScroll();
+        else if (obj == 4)
+            LoadNextScene();
     }
 
     public void StartDialogue(List<Dialogue> dialogues)
     {
-        // Gameplay.CanPlayerMove = false;
+        PlayerManager.CanPlayerMove = false;
         dialogueScreen.SetActive(true);
          dialogueIndex = 0;
         // start dialogue
@@ -65,6 +66,7 @@ public class LibraryDialogues : MonoBehaviour
         if(dialogueIndex == tempDialogueList.Count-1)
         {
             dialogueScreen.SetActive(false);
+            PlayerManager.CanPlayerMove = true;
             return;
         }
         dialogueIndex++;
@@ -80,11 +82,18 @@ public class LibraryDialogues : MonoBehaviour
         ancientScroll.SetActive(true);
         openBox.SetActive(true);
         closeBox.SetActive(false);
+        QuestLogManager.instance.SetStatus(2, 0);
 
-        Invoke("HideAncientScroll", 5);
+        Invoke("HideAncientScroll", 3);
     }
     void HideAncientScroll()
     {
         ancientScroll.SetActive(false);
+        LibraryManager.instance.endCollider.SetActive(true);
+    }
+    void LoadNextScene()
+    {
+        GameManager.LoadScene(EScene.Gameplay);
+        Globals.afterLibrary = true;
     }
 }

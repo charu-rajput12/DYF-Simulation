@@ -54,7 +54,7 @@ public class Quest2Quiz : MonoBehaviour
 	public void EndQuiz()
 	{
 		ShowUI(2);
-		Gameplay.CanPlayerMove = true;
+		PlayerManager.CanPlayerMove = true;
 		QuestLogManager.instance.SetStatus(3, 1);
 	}
 
