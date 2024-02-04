@@ -38,24 +38,30 @@ public class DialogManager : MonoBehaviour
     {
         if (DataManager.GameData.PlayerData.currentQuest == 0)
         {
-            if(dialogueIndex == 4)
+            if (dialogueIndex == 4 || dialogueIndex == tempDialogueList.Count - 1)
             {
                 dialogueScreen.SetActive(false);
-                pauseDialogues.Invoke(1);
+                pauseDialogues.Invoke(dialogueIndex == 4 ? 1 : 2);
                 return;
             }
-            else if(dialogueIndex == tempDialogueList.Count-1)
+        }
+        else if (DataManager.GameData.PlayerData.currentQuest == 1)
+        {
+            if (dialogueIndex == tempDialogueList.Count - 1)
             {
                 dialogueScreen.SetActive(false);
-                pauseDialogues.Invoke(2);
+                PlayerManager.CanPlayerMove = true;
                 return;
             }
         }
 
         dialogueIndex++;
-        if(dialogueIndex < tempDialogueList.Count)
+        if (dialogueIndex < tempDialogueList.Count)
+        {
             PlayDialogue(tempDialogueList[dialogueIndex]);
+        }
     }
+
     public void ReturnToDialogue()
     {
         dialogueScreen.SetActive(true);

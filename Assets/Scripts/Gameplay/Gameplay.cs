@@ -7,6 +7,8 @@ public class Gameplay : MonoBehaviour
 {
 	static Gameplay s_instance;
 	[SerializeField] BoxCollider2D libraryEnterDoor;
+	[SerializeField] BoxCollider2D sphinxEnterDoor;
+
 
 
 	[SerializeField] Cainos.PixelArtTopDown_Basic.TopDownCharacterController m_playerController;
@@ -26,10 +28,17 @@ public class Gameplay : MonoBehaviour
 	}
 	private void Start()
 	{
-		GameManager.CurrentScene = EScene.Gameplay;
-		SoundManager.SetInitialMasterVolume();
 		if (Globals.afterLibrary)
 			libraryEnterDoor.enabled = false;
+		else if (!Globals.afterSphinxScroll)
+			sphinxEnterDoor.enabled = true;
+		else if (Globals.afterSphinxScroll)
+			sphinxEnterDoor.enabled = false;
+		GameManager.CurrentScene = EScene.Gameplay;
+		SoundManager.SetInitialMasterVolume();
+
+
+
 	}
 	public static void LoadMenuScene()
 	{

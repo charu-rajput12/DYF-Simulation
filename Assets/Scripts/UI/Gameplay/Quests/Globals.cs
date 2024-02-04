@@ -8,4 +8,7 @@ public class Globals
     public static List<int> visitedQuest = new List<int>();
     public static bool afterLibrary;
 
+    public static bool afterSphinxScroll;
+
+
 }

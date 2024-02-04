@@ -27,22 +27,31 @@ public class LibraryDialogues : MonoBehaviour
     private void ShowDialogue(int obj)
     {
         tempDialogueList.Clear();
-        if(obj == 0)
+
+        switch (obj)
         {
-            tempDialogueList = librarianDialogue;
-            StartDialogue(tempDialogueList);
+            case 0:
+                tempDialogueList = librarianDialogue;
+                break;
+
+            case 1:
+                tempDialogueList = librarian2Dialogue;
+                break;
+
+            case 2:
+                ShowHintPopUp();
+                return;
+
+            case 3:
+                ShowAncientScroll();
+                return;
+
+            case 4:
+                LoadNextScene();
+                return;
         }
-        else if (obj == 1)
-        {
-            tempDialogueList = librarian2Dialogue;
-            StartDialogue(tempDialogueList);
-        }
-        else if (obj == 2)
-            ShowHintPopUp();
-        else if (obj == 3)
-            ShowAncientScroll();
-        else if (obj == 4)
-            LoadNextScene();
+
+        StartDialogue(tempDialogueList);
     }
 
     public void StartDialogue(List<Dialogue> dialogues)
