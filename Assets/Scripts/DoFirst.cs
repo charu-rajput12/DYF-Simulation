@@ -46,5 +46,16 @@ public class DoFirst : UIBase
 	{
 		Hide();
 	}
+	public static void ShowCompleteQuestText(int quest)
+    {
+		 s_instance.ShowQuestText(quest);
 
+	}
+	void ShowQuestText(int quest)
+    {
+		string s = string.Empty;
+		s = "You have already complete this Quest";
+		m_text.text = s;
+		Show();
+	}
 }

@@ -22,25 +22,35 @@ public class Quest2_TriggerEvent : MonoBehaviour
                 else if (gameObject.name == "Door1")
                 {
                     Debug.Log("trigger door 1");
-                    Quest2_Spawner.ToggleCorridors(1);
+                    FadeInOut.instance.FadeInNOut();
+                    StartCoroutine(ToggleNextCorridor(1));
+                    //Quest2_Spawner.ToggleCorridors(1);
                 }
                 else if (gameObject.name == "Door2")
                 {
                     Debug.Log("trigger door 2");
-                    Quest2_Spawner.ToggleCorridors(2);
+                    FadeInOut.instance.FadeInNOut();
+                    StartCoroutine(ToggleNextCorridor(2));
+
+                    //Quest2_Spawner.ToggleCorridors(2);
                 }
                 else if (gameObject.name == "Door3")
                 {
                     Debug.Log("trigger door 3");
-                    Quest2_Spawner.ToggleCorridors(3);
-                }
-                else if (gameObject.name == "ChestBox")
-                {
-                    Debug.Log("trigger chest box");
-                    Quest2_Spawner.OpenChestBox();
+                    FadeInOut.instance.FadeInNOut();
+                    StartCoroutine(ToggleNextCorridor(3));
+
+                    //Quest2_Spawner.ToggleCorridors(3);
+                    QuestLogManager.instance.SetStatus(1, 1);
                 }
             }
            
         }
+    }
+    IEnumerator ToggleNextCorridor(int n)
+    {
+        yield return new WaitForSeconds(1);
+        Quest2_Spawner.ToggleCorridors(n);
+
     }
 }

@@ -56,7 +56,7 @@ public class Quest1Quiz : MonoBehaviour
     {
 		ShowUI(3);
 		PlayerManager.CanPlayerMove = true;
-		QuestLogManager.instance.SetStatus(3,0);
+		//QuestLogManager.instance.SetStatus(3,0);
 		RewardsUI.instance.SaveAchivement(1); // achieved 1 index task in achievement
 		RewardsUI.instance.ShowAchievmentPopup("Complete any quiz");
 
@@ -103,7 +103,7 @@ public class Quest1Quiz : MonoBehaviour
 			warningPopup.SetActive(true);
 			return;
         }
-		QuestLogManager.instance.SetStatus(2, 0);
+		//QuestLogManager.instance.SetStatus(2, 0);
 
 		ShowUI(2);
 		if (correctAnswer == 4)

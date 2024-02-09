@@ -18,14 +18,7 @@ public class DialogManager_Quest1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //if (Globals.visitedQuest.Contains())
-        //{
-        //    Globals.currentQuest = 1;
-        //    // dialogManager.StartDialogue(dialogue);
-        //    dialogManager.pauseDialogues += ShowWords;
-        //}
-            dialogManager.pauseDialogues += ShowWords;
-
+        dialogManager.pauseDialogues += ShowWords;
     }
     public void StartQuest()
     {
@@ -38,7 +31,6 @@ public class DialogManager_Quest1 : MonoBehaviour
             dialogManager.StartDialogue(dialogue_AfterLibrary);
 
     }
-
 
     private void ShowWords(int obj)
     {   
@@ -66,7 +58,6 @@ public class DialogManager_Quest1 : MonoBehaviour
         if(wordCount >= 5)
         {
             wordScreen.SetActive(false);
-
             dialogManager.ReturnToDialogue();
         }
         else

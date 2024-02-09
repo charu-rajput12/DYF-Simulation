@@ -9,7 +9,6 @@ public class Quest2_Spawner : MonoBehaviour
     public List<GameObject> corridors;
     public List<GameObject> corridorsColliders;
     public List<GameObject> triggerColliders;
-    public GameObject chestboxOpen, chestBoxClose;
 
     public List<Transform> spawnPoints;
     public Transform player;
@@ -54,17 +53,5 @@ public class Quest2_Spawner : MonoBehaviour
         player.position = spawnPoints[index].position;
     }
 
-    public void OpenChestBox()
-    {
-        chestboxOpen.SetActive(true);
-        chestBoxClose.SetActive(false);
-        Invoke(nameof(BackToMainGame), 3f);
-    }
-
-    void BackToMainGame()
-    {
-        Globals.afterSphinxScroll = true;
-        Globals.afterLibrary = false;
-        SceneManager.LoadScene("GamePlay");
-    }
+   
 }

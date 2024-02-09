@@ -37,11 +37,21 @@ public class Codex_Gameplay : MonoBehaviour
             item.gameObject.SetActive(false);
         }
         description[index].gameObject.SetActive(true);
-        if (index == 2)
-            codexButton[3].gameObject.SetActive(true);
-        else
+        //if (index == 2)
+        //{
+        //    codexButton[3].gameObject.SetActive(true);
+        //    codexButton[4].gameObject.SetActive(true);
+        //}
+        if(index == 0 || index == 1)
+        {
             codexButton[3].gameObject.SetActive(false);
-
+            codexButton[4].gameObject.SetActive(false);
+        }
+        else
+        {
+            codexButton[3].gameObject.SetActive(true);
+            codexButton[4].gameObject.SetActive(true);
+        }
 
     }
 }

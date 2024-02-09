@@ -20,7 +20,16 @@ public class Menu : MonoBehaviour
 		GameManager.CurrentScene = EScene.MainMenu;
 	}
 	public static void LoadPlayScene()
-    {
+	{
+		//FadeInOut.instance.FadeInNOut();
+
 		GameManager.LoadScene(EScene.Gameplay);
-    }
+		//s_instance.StartCoroutine(s_instance.LoadInDelay());
+	}
+	//IEnumerator LoadInDelay()
+ //   {
+	//	FadeInOut.instance.FadeInNOut();
+	//	yield return new WaitForSeconds(2);
+	//	GameManager.LoadScene(EScene.Gameplay);
+	//}
 }

@@ -6,6 +6,7 @@ public class UINpc : UIBase
 {
 	static UINpc s_instance;
 	[SerializeField] DialogManager_Quest1 dialogManager_Quest1;
+	[SerializeField] DialogueManager_Quest2GamePlay dialogManager_Quest2;
 	//public bool ifNpcInteracted;
 
 	bool m_canUpdate = false;
@@ -70,16 +71,22 @@ public class UINpc : UIBase
 		{
 			DoFirst.ShowUI(m_npc.NpcId);
 		}
+		else if (m_npc.NpcId < currentqUEST)
+        {
+			DoFirst.ShowCompleteQuestText(currentqUEST);
+		}
 		else 
 		{
             if (!m_npc.npc_Interactable)
             {
 				if (m_npc.NpcId == 0 && currentqUEST == 0)
 					dialogManager_Quest1.StartQuest();
-				else if (currentqUEST == 1)
-				{
-					QuestManager.OnInteract(m_npc, () => m_canUpdate = true);
-				}
+				if (m_npc.NpcId == 1 && currentqUEST == 1)
+					dialogManager_Quest2.StartQuest();
+				//else if (currentqUEST == 1)
+				//{
+				//    QuestManager.OnInteract(m_npc, () => m_canUpdate = true);
+				//}
 				m_npc.npc_Interactable = true;
 			}
 

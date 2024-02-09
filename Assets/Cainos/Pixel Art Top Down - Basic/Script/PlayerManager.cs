@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-    static PlayerManager s_instance;
+    public static PlayerManager s_instance;
 
     public event Action<int> invokeNextStep;
     public Transform afterLibraryPosition, afterSphinxScroll;
@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     {
         s_instance = this;
 
+        if (!Globals.inMainGamePlay) return;
         if (Globals.afterLibrary)
         {
             transform.position = afterLibraryPosition.position;
@@ -27,7 +28,7 @@ public class PlayerManager : MonoBehaviour
         {
             transform.position = afterSphinxScroll.position;
             mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y + .62f, transform.position.z);
-            DialogueManager_Quest2GamePlay.instance.StartQuest(1);
+            //DialogueManager_Quest2GamePlay.instance.StartQuest(1);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -65,9 +66,14 @@ public class PlayerManager : MonoBehaviour
             case "end library":
                 invokeNextStep.Invoke(4);
                 break;
-            case "SphinxDoor":
-                DialogueManager_Quest2GamePlay.instance.StartQuest(0);
+            case "sphinx scroll box":
+                //FadeInOut.instance.FadeInNOut();
+                Debug.Log("scroll box");
+                invokeNextStep.Invoke(0);
                 break;
+                //case "SphinxDoor":
+                //    DialogueManager_Quest2GamePlay.instance.StartQuest(0);
+                //    break;
         }
 
 

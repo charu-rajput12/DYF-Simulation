@@ -6,5 +6,6 @@
 	Gameplay,
 	MiniGames_Wordle,
 	MiniGames_MathBall,
-	Library_Maze
+	Library_Maze,
+	Quest2_Sphinx
 }

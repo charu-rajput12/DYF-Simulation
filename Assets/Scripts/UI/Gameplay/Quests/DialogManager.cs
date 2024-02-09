@@ -51,6 +51,20 @@ public class DialogManager : MonoBehaviour
             {
                 dialogueScreen.SetActive(false);
                 PlayerManager.CanPlayerMove = true;
+                if (Globals.afterSphinxScroll)
+                {
+                    Debug.Log("end quest ");
+                    DataManager.GameData.PlayerData.currentQuest = 2;
+                    QuestLogManager.instance.SetStatus(3, 1);
+                    UIGameplay.ShowUI();
+
+                }
+                else
+                {
+                    Debug.Log("load scene  ");
+                    //FadeInOut.instance.FadeInNOut();
+                    GameManager.LoadScene(EScene.Quest2_Sphinx);
+                }
                 return;
             }
         }

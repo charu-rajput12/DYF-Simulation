@@ -57,6 +57,10 @@ public class QuestManager : MonoBehaviour
 			s_instance.ShowStartQuestDialogue(l_npcQuest, a_npc.Sprite, a_OnCancel);
 
 		}
+		else if (l_currentQuest > l_npcQuest)
+        {
+			Debug.Log("You have already completed this Quest ! Move to Quest "+ l_currentQuest);
+        }
 		else
 		{ 
 			//show "complete other quests first dialogue box"

@@ -55,7 +55,7 @@ public class Quest2Quiz : MonoBehaviour
 	{
 		ShowUI(2);
 		PlayerManager.CanPlayerMove = true;
-		QuestLogManager.instance.SetStatus(3, 1);
+		//QuestLogManager.instance.SetStatus(3, 1);
 	}
 
 	//select path index
@@ -113,13 +113,13 @@ public class Quest2Quiz : MonoBehaviour
 			{
 				item.color = deSelectedColor;
 			}
-			QuestLogManager.instance.SetStatus(1, 1);
+			//QuestLogManager.instance.SetStatus(1, 1);
 			checkButton.interactable = false;
 
 		}
 		else
         {
-			QuestLogManager.instance.SetStatus(2, 1);
+			//QuestLogManager.instance.SetStatus(2, 1);
 			EndQuiz();
 
 		}

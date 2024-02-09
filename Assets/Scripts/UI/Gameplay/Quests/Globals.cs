@@ -10,5 +10,7 @@ public class Globals
 
     public static bool afterSphinxScroll;
 
+    public static bool inMainGamePlay;
+
 
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Quest2_SphinxRiddle : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Quest2_SphinxRiddle : MonoBehaviour
     public TMP_Text riddleQuestion;
     public List<TMP_Text> riddleOptions;
     public GameObject dialogueScreen;
+    public Image[] OptionImage;
+    public Color SelectedColor;
+    public Color deSelectedColor;
 
     public DialogManager_Quest2 dialogManager_Quest2;
     string rightAns;
@@ -23,6 +27,7 @@ public class Quest2_SphinxRiddle : MonoBehaviour
     public int counter = 0;
     void PlayRiddle()
     {
+        PlayerManager.CanPlayerMove = false;
         riddleScreen.SetActive(true);
         dialogueScreen.SetActive(false);
 
@@ -39,10 +44,19 @@ public class Quest2_SphinxRiddle : MonoBehaviour
     public void OnSelectedAnswer(TMP_Text tMP_Text)
     {
         SelectedAns = tMP_Text.text;
+        foreach (var item in OptionImage)
+        {
+            item.color = deSelectedColor;
+        }
+        tMP_Text.GetComponentInParent<Image>().color = SelectedColor;
     }
     public void CheckAnswer()
     {
-        if(SelectedAns == rightAns)
+        foreach (var item in OptionImage)
+        {
+            item.color = deSelectedColor;
+        }
+        if (SelectedAns == rightAns)
         {
             Debug.Log("right answer "+ SelectedAns);
             dialogManager_Quest2.PlayDialogue(counter);

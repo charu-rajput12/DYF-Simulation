@@ -4,62 +4,43 @@ using System.Collections;
 
 public class FadeInOut : MonoBehaviour
 {
-    public float fadeDuration = 5; // Duration of the fade-in and fade-out in seconds
-    private CanvasGroup canvasGroup;
+    [Tooltip("the image you want to fade, assign in inspector")]
+    [SerializeField] private Image img;
+    public static FadeInOut instance;
 
-    void Start()
+    private void Awake()
     {
-        // Ensure there is a CanvasGroup component attached to the GameObject
-        canvasGroup = GetComponent<CanvasGroup>();
-        if (canvasGroup == null)
-        {
-            canvasGroup = gameObject.AddComponent<CanvasGroup>();
-        }
-
-        // Start with a fully transparent canvas (alpha = 0)
-        canvasGroup.alpha = 0f;
-
-        // Start the fade-in process
-        StartCoroutine(FadeIn());
+        instance = this;
+    }
+    public void Start()
+    {
+        //StartCoroutine(FadeInAndOut());
+        img.color = new Color(0, 0, 0, 0);
+    }
+    public void FadeInNOut()
+    {
+        StartCoroutine(FadeInAndOut());
     }
 
-    IEnumerator FadeIn()
+    IEnumerator FadeInAndOut()
     {
-        while (canvasGroup.alpha < 1f)
+        // loop over 1 second
+        for (float i = 0; i <= 1; i += Time.deltaTime)
         {
-            canvasGroup.alpha += Time.deltaTime / fadeDuration;
+            // set color with i as alpha
+            img.color = new Color(0, 0, 0, i);
             yield return null;
         }
 
-        // Ensure alpha is exactly 1 at the end
-        canvasGroup.alpha = 1f;
+        //Temp to Fade Out
+        yield return new WaitForSeconds(1);
 
-        // Wait for a moment (optional)
-        yield return new WaitForSeconds(1.0f);
-
-        // Start the fade-out process
-        StartCoroutine(FadeOut());
-    }
-
-    IEnumerator FadeOut()
-    {
-        while (canvasGroup.alpha > 0f)
+        // loop over 1 second backwards
+        for (float i = 1; i >= 0; i -= Time.deltaTime)
         {
-            canvasGroup.alpha -= Time.deltaTime / fadeDuration;
+            // set color with i as alpha
+            img.color = new Color(0, 0, 0, i);
             yield return null;
         }
-
-        // Ensure alpha is exactly 0 at the end
-        canvasGroup.alpha = 0f;
-
-        // Do something after the fade-out if needed
-
-        // Destroy or disable the GameObject (optional)
-        // gameObject.SetActive(false);
-
-        // Alternatively, you can load a new scene or perform any other action
-
-        // For now, let's destroy the script component (optional)
-        //Destroy(this);
     }
 }

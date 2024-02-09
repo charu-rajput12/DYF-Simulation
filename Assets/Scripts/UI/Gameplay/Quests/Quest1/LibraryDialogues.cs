@@ -19,6 +19,10 @@ public class LibraryDialogues : MonoBehaviour
     public List<Dialogue> librarianDialogue;
     public List<Dialogue> librarian2Dialogue;
 
+    private void Awake()
+    {
+        Globals.inMainGamePlay = false;
+    }
     void Start()
     {
         playerManager.invokeNextStep += ShowDialogue;
@@ -46,9 +50,9 @@ public class LibraryDialogues : MonoBehaviour
                 ShowAncientScroll();
                 return;
 
-            case 4:
-                LoadNextScene();
-                return;
+            //case 4:
+            //    LoadNextScene();
+            //    return;
         }
 
         StartDialogue(tempDialogueList);
@@ -99,9 +103,11 @@ public class LibraryDialogues : MonoBehaviour
     {
         ancientScroll.SetActive(false);
         LibraryManager.instance.endCollider.SetActive(true);
+        LoadNextScene();
     }
     void LoadNextScene()
     {
+        //FadeInOut.instance.FadeInNOut();
         GameManager.LoadScene(EScene.Gameplay);
         Globals.afterLibrary = true;
     }

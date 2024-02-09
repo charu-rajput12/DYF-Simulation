@@ -47,7 +47,7 @@ public class UIMainMenu : UIBase
 	}
 	public void OnBtnClicked_Start()
 	{
-		s_instance.Hide();
+		//s_instance.Hide();
 		Menu.LoadPlayScene();
 	}
 	public void OnBtnClicked_Instructions()
